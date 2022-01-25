@@ -108,7 +108,7 @@ int main() {
   printf("Hello world: %d, %d\n", z, w);
 
   auto hr = CoInitialize(0);
-  assert(SUCCEEDED(hr));;
+  assert(SUCCEEDED(hr));
 
   auto co = new MyComObject();
   co->AddRef();
@@ -119,7 +119,8 @@ int main() {
     BSTR otherBstr = nullptr;
     my_interface->MyMethod(myBstr, &otherBstr);
     SysFreeString(otherBstr);
-    co->Release();
+    SysFreeString(myBstr);
+    my_interface->Release();
   }
   co->Release();
 
